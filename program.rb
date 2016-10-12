@@ -5,7 +5,7 @@ id = 0
 CSV.foreach('./downtowns.csv', headers: true) do |row|
     id += 1
     puts <<~EOS
-    "INSERT INTO Downtown
+    INSERT INTO Downtown
     (
       id,
       prefecture_code,
@@ -17,7 +17,9 @@ CSV.foreach('./downtowns.csv', headers: true) do |row|
       inside_shop_count,
       employee_count,
       annual_sales_turnover,
-      area
+      area,
+      latitude,
+      longitude
     )
     VALUES
     (
@@ -31,7 +33,9 @@ CSV.foreach('./downtowns.csv', headers: true) do |row|
       #{row['inside_shop_count']},
       #{row['employee_count']},
       #{row['annual_sales_turnover']},
-      #{row['area']}
+      #{row['area']},
+      #{latitude},
+      #{longitude}
     );
     EOS
 end
