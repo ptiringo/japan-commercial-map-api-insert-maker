@@ -1,13 +1,38 @@
 require 'csv'
+require 'json'
+require 'optparse'
+require 'faraday'
 
-id = 0
+options = ARGV.getopts('', 'file:', 'apikey:')
 
-CSV.foreach('./downtowns.csv', headers: true) do |row|
-    id += 1
-    puts <<~EOS
+# オプションは必須
+if options['file'].nil? or options['apikey'].nil? then
+  puts 'ex) ruby progmra.rb --file ./downtowns.csv --apikey xxxxxxxxxxxxxxxxxxxxxxxxxx'
+  exit 1
+end
+
+conn = Faraday.new(:url => 'https://maps.googleapis.com') do |faraday|
+  faraday.request  :url_encoded
+  faraday.adapter  Faraday.default_adapter
+end
+
+CSV.foreach(options['file'], headers: true) do |row|
+  response = conn.get '/maps/api/geocode/json', { :address => row['name'], :key => options['key'] }
+
+  body = JSON.parse(response.body)
+
+  if body["status"] == "OK" then
+    location = body["results"][0]["geometry"]["location"]
+    latitude = location["lat"]
+    longitude = location["lng"]
+  else
+    latitude = 0
+    longitude = 0
+  end
+
+  puts <<~EOS
     INSERT INTO Downtown
     (
-      id,
       prefecture_code,
       code1,
       code2,
@@ -23,7 +48,6 @@ CSV.foreach('./downtowns.csv', headers: true) do |row|
     )
     VALUES
     (
-      #{id},
       #{row['prefecture_code']},
       #{row['code1']},
       #{row['code2']},
@@ -37,5 +61,8 @@ CSV.foreach('./downtowns.csv', headers: true) do |row|
       #{latitude},
       #{longitude}
     );
-    EOS
+  EOS
+
+  # 短時間での大量アクセスを避けるため少し時間を置く
+  sleep(0.5)
 end
