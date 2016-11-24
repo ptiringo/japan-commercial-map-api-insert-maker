@@ -9,17 +9,20 @@
 ## ツールの使用方法
 使用例）
 ```
-ruby progmra.rb --file ./downtowns.csv --apikey xxxxxxxxxxxxxxxxxxxxxxxxxx'
+ruby progmra.rb --input ./downtowns.csv --apikey xxxxxxxxxxxxxxxxxxxxxxxxxx'
 ```
 
+カレントディレクトリに insert.sql という名称のファイルを作成します。
+
+### 引数
 <dl>
-  <dt>--file</dt>
+  <dt>--input</dt>
   <dd>（必須）インプット情報として使用する CSV ファイルのパスを指定します。</dd>
   <dt>--apikey</dt>
   <dd>（必須）Google Map API に接続するための API キーを指定します。</dd>
 </dl>
 
-### --file で指定するインプットファイルについて
+### --input で指定するインプットファイルについて
 [立地環境特性別統計編（小売業）内の第 10 表](http://www.meti.go.jp/statistics/tyo/syougyo/result-2/h26/index-ricchidata.html)から加工して作成する必要があります。
 
 - ヘッダーあり。
@@ -43,4 +46,5 @@ ruby progmra.rb --file ./downtowns.csv --apikey xxxxxxxxxxxxxxxxxxxxxxxxxx'
 - [x] CSV ファイルを読み込む。
 - [ ] Google Map API に接続し、地名から座標を取得する。
 - [ ] SQL 文を構築する。
+- [ ] SQL ファイルを出力する。
 - [ ] データベースに格納できるかのテストを記述する。
