@@ -9,7 +9,7 @@
 ## ツールの使用方法
 使用例）
 ```
-ruby progmra.rb --input ./downtowns.csv --apikey xxxxxxxxxxxxxxxxxxxxxxxxxx'
+ruby program.rb --input ./downtowns.csv --apikey xxxxxxxxxxxxxxxxxxxxxxxxxx'
 ```
 
 カレントディレクトリに insert.sql という名称のファイルを作成します。
