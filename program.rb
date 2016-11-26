@@ -16,9 +16,8 @@ conn = Faraday.new(url: 'https://maps.googleapis.com') do |faraday|
   faraday.adapter Faraday.default_adapter
 end
 
-File.open('insert.sql', 'a') do |_file|
+File.open('insert.sql', 'w') do |file|
   CSV.foreach(options['input'], headers: true) do |row|
-
     response = conn.get '/maps/api/geocode/json',
                         address: row['name'],
                         key: options['key']
@@ -65,9 +64,12 @@ File.open('insert.sql', 'a') do |_file|
         #{latitude},
         #{longitude}
       );
+
     SQL
 
     # 短時間での大量アクセスを避けるため少し時間を置く
     sleep(0.5)
   end
+
+  file.puts 'COMMIT;'
 end
