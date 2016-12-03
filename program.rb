@@ -13,6 +13,7 @@ end
 
 conn = Faraday.new(url: 'https://maps.googleapis.com') do |faraday|
   faraday.request :url_encoded
+  faraday.response :logger
   faraday.adapter Faraday.default_adapter
 end
 
@@ -20,7 +21,7 @@ File.open('insert.sql', 'w') do |file|
   CSV.foreach(options['input'], headers: true) do |row|
     response = conn.get '/maps/api/geocode/json',
                         address: row['name'],
-                        key: options['key']
+                        key: options['apikey']
 
     body = JSON.parse(response.body)
 
