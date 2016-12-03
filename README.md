@@ -40,12 +40,3 @@ ruby program.rb --input ./downtowns.csv --apikey xxxxxxxxxxxxxxxxxxxxxxxxxx'
 |8|employee_count|従業者数|
 |9|annual_sales_turnover|年間商品販売額|
 |10|area|売り場面積|
-
-## TODO
-- [x] 入力ファイルと API キーをコマンドライン引数から取得する。
-- [x] CSV ファイルを読み込む。
-- [x] Google Map API に接続し、地名から座標を取得する。
-- [x] Google MAP API で座x表を取得できなかった際の処理を追加。
-- [x] SQL 文を構築する。
-- [x] SQL ファイルを出力する。
-- [ ] データベースに格納できるかをテストする。
