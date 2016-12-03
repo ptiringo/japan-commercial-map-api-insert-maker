@@ -13,7 +13,6 @@ end
 
 conn = Faraday.new(url: 'https://maps.googleapis.com') do |faraday|
   faraday.request :url_encoded
-  faraday.response :logger
   faraday.adapter Faraday.default_adapter
 end
 
