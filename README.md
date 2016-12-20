@@ -2,7 +2,7 @@
 ※個人的に使用するためのツールです。
 
 ## 本ツールの目的
-[経済産業省の平成26年商業統計](http://www.meti.go.jp/statistics/tyo/syougyo/result-2.html)の[立地環境特性別統計編（小売業）内の第 10 表](http://www.meti.go.jp/statistics/tyo/syougyo/result-2/h26/index-ricchidata.html)を利用して日本国内における年の小売の商業規模を視覚的に表すマップを作成したい。そのためのデータをエクセルファイルから抽出し、データベースに格納するための SQL を作成するためのツールである。
+[経済産業省の平成26年商業統計](http://www.meti.go.jp/statistics/tyo/syougyo/result-2.html)の[立地環境特性別統計編（小売業）内の第 10 表](http://www.meti.go.jp/statistics/tyo/syougyo/result-2/h26/index-ricchidata.html)を利用して日本国内における都市の小売の商業規模を視覚的に表すマップを作成したい。そのためのデータをエクセルファイルから抽出し、データベースに格納するための SQL を作成するためのツールである。
 
 統計のデータは商業集積地区の名称は含むがその住所についてのデータは含まないため、Google Map API を利用して、地区名称から座標データを取得する。
 
